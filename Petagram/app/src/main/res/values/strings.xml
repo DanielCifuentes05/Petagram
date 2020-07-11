@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Petagram</string>
+    <string name="nombre">Kira</string>
+    <string name="like">4</string>
+    <string name="toast">Tomar Foto</string>
+    <string name="liketoast">Diste Like</string>
+
+
 </resources>
