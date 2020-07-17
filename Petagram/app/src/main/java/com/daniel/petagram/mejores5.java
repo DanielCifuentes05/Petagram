@@ -7,9 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.daniel.petagram.adapter.MascotaAdapter;
+import com.daniel.petagram.pojo.Mascota;
+
 import java.util.ArrayList;
 
-public class mejores5 extends AppCompatActivity {
+public class Mejores5 extends AppCompatActivity {
 
     ArrayList<Mascota> mascotas5;
     private RecyclerView listaMascotas;

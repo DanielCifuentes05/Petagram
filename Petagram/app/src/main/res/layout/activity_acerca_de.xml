@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Mejores5"
+    tools:context=".AcercaDe"
     android:orientation="vertical">
 
     <include android:id="@+id/miToolbar2"
         layout="@layout/toolbar2"
         ></include>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMascotas2"
+    <TextView
+        android:id="@+id/tvAcercade"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toEndOf="@+id/miToolbar2"
-        android:layout_toRightOf="@+id/miToolbar2" />
-
+        android:text="@string/acercade_Texto"
+        android:textSize="36dp"
+        android:textColor="#000000"
+        />
 
 
 </LinearLayout>

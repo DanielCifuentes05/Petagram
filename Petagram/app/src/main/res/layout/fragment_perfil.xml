@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.PerfilFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/perfilFoto"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/perro"
+            android:layout_gravity="center"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="6dp"
+            app:civ_shadow="true"
+            android:elevation="6dp"
+            >
+        </com.mikhaellopez.circularimageview.CircularImageView>
+
+        <TextView
+            android:id="@+id/nombrePerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:text="@string/nombre"
+            android:gravity="center"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

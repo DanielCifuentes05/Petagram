@@ -4,6 +4,13 @@
     <string name="like">4</string>
     <string name="toast">Tomar Foto</string>
     <string name="liketoast">Diste Like</string>
-
-
+    <string name="menu_acerca">Acerca de</string>
+    <string name="menu_contacto">Contacto</string>
+    <string name="acercade_Texto">Desarrollador independiente. Proyecto netamente academico </string>
+    <string name="conNombre">Nombre</string>
+    <string name="email">Correo Electronico</string>
+    <string name="mensaje">Mensaje</string>
+    <string name="enviar">Enviar Mensaje</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
