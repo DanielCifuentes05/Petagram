@@ -5,17 +5,24 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.daniel.petagram.adapter.MascotaAdapter;
+import com.daniel.petagram.db.BaseDatos;
+import com.daniel.petagram.db.ConstructorMascotas;
 import com.daniel.petagram.pojo.Mascota;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Mejores5 extends AppCompatActivity {
 
-    ArrayList<Mascota> mascotas5;
+    ArrayList<Mascota> mascotas5 = new ArrayList<>();
+    ArrayList<Mascota> mascotas= new ArrayList<>();
     private RecyclerView listaMascotas;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +36,7 @@ public class Mejores5 extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listaMascotas.setLayoutManager(llm);
-        llenarLista();
+        obtenerMejores5();
         inicializarAdapter();
     }
 
@@ -38,16 +45,16 @@ public class Mejores5 extends AppCompatActivity {
         listaMascotas.setAdapter(adapter);
 
     }
-    public void llenarLista(){
 
-        mascotas5 = new ArrayList<>();
+    public void obtenerMejores5(){
+        BaseDatos db = new BaseDatos(this);
+        mascotas = db.obtenerMascotas();
+        Collections.sort(mascotas);
 
-        //mascotas.add(new Mascota("Lupe","Gato","Hembra",3, R.drawable.gato3));
-        mascotas5.add(new Mascota("Max","Perro", "Macho",5, R.drawable.mascota_mosquito_1));
-        mascotas5.add(new Mascota("Rufo","Perro", "Macho",7, R.drawable.perrito1));
-        mascotas5.add(new Mascota("Hana","Perro", "Hembra",6, R.drawable.perro));
-        mascotas5.add(new Mascota("Fiona","Perro", "Hembra",9, R.drawable.perro6));
-        mascotas5.add(new Mascota("Aron","Gato", "Macho",6, R.drawable.gato));
+        for(int i = mascotas.size()-1; i>= mascotas.size()-5; i--){
+            mascotas5.add(mascotas.get(i));
+        }
+
     }
 
 }

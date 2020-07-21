@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.daniel.petagram.db.ConstructorMascotas;
 import com.daniel.petagram.pojo.Mascota;
 import com.daniel.petagram.R;
 
@@ -38,7 +39,7 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MascotaViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MascotaViewHolder holder, final int position) {
         final Mascota mascota = mascotas.get(position);
         holder.srcFoto.setImageResource(mascota.getFoto());
         holder.tvNombre.setText(mascota.getNombre());
@@ -55,7 +56,13 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(activity,"Has dado like a"+ mascota.getNombre() , Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity,"Has dado like a "+ mascota.getNombre() , Toast.LENGTH_SHORT).show();
+
+                ConstructorMascotas constructorMascotas = new ConstructorMascotas(activity);
+                constructorMascotas.darLikeMascota(mascota);
+                holder.tvLike.setText(String.valueOf(constructorMascotas.obtenerLikesMascota(mascota)));
+
+
             }
         });
 

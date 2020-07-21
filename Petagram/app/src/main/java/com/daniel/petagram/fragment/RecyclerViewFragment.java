@@ -14,39 +14,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daniel.petagram.R;
 import com.daniel.petagram.adapter.MascotaAdapter;
 import com.daniel.petagram.pojo.Mascota;
+import com.daniel.petagram.presentador.IRecyclerHomeFragmentPresenter;
+import com.daniel.petagram.presentador.RecyclerHomeFragmentPresenter;
 
 import java.util.ArrayList;
 
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment implements IHomeFragment {
 
 
     ArrayList<Mascota> mascotas;
     private RecyclerView listaMascotas;
+    private IRecyclerHomeFragmentPresenter presenter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
         View v = inflater.inflate(R.layout.fragment_recyclerview, container, false);
-
-
         listaMascotas =(RecyclerView) v.findViewById(R.id.rvMascotas);
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        listaMascotas.setLayoutManager(llm);
-
-        llenarLista();
-        inicializarAdapter();
+        presenter= new RecyclerHomeFragmentPresenter(this, getContext());
         return v;
 
     }
 
-    public void inicializarAdapter(){
-        MascotaAdapter adapter = new MascotaAdapter(mascotas,getActivity());
-        listaMascotas.setAdapter(adapter);
 
-    }
-
-    public void llenarLista(){
+    /*public void llenarLista(){
 
         mascotas = new ArrayList<>();
 
@@ -56,5 +47,23 @@ public class RecyclerViewFragment extends Fragment {
         mascotas.add(new Mascota("Hana","Perro", "Hembra",6, R.drawable.perro));
         mascotas.add(new Mascota("Fiona","Perro", "Hembra",9, R.drawable.perro6));
         mascotas.add(new Mascota("Aron","Gato", "Macho",6, R.drawable.gato));
+    } */
+
+    @Override
+    public void generarLinearLayout() {
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        listaMascotas.setLayoutManager(llm);
+    }
+
+    @Override
+    public MascotaAdapter crearAdapter(ArrayList<Mascota> mascotas) {
+        MascotaAdapter adapter = new MascotaAdapter(mascotas,getActivity());
+        return adapter;
+    }
+
+    @Override
+    public void inicializarAdapterHome(MascotaAdapter adapter) {
+        listaMascotas.setAdapter(adapter);
     }
 }

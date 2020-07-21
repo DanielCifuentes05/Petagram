@@ -1,14 +1,18 @@
 package com.daniel.petagram.pojo;
 
-public class Mascota {
+public class Mascota implements Comparable<Mascota>{
 
+    private int id;
     private String nombre;
     private String raza;
     private String sexo;
     private int num_likes=0;
     private int foto;
 
-    public Mascota(String nombre, String raza,String sexo,  int num_likes, int foto) {
+    public Mascota() {
+    }
+
+    public Mascota(String nombre, String raza, String sexo, int num_likes, int foto) {
         this.nombre = nombre;
         this.raza = raza;
         this.sexo = sexo;
@@ -55,4 +59,26 @@ public class Mascota {
     public void setNum_likes(int num_likes) {
         this.num_likes = num_likes;
     }
-}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public int compareTo(Mascota o) {
+
+        if (o.getNum_likes() > num_likes) {
+            return -1;
+        } else if (o.getNum_likes() > num_likes) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+    }
+
+
