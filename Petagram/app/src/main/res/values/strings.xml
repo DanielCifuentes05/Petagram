@@ -11,6 +11,10 @@
     <string name="email">Correo Electronico</string>
     <string name="mensaje">Mensaje</string>
     <string name="enviar">Enviar Mensaje</string>
+    <string name="nombreUsuario">Nombre de usuario</string>
+    <string name="guardar">Guardar Cuenta</string>
+    <string name="configurar">Configurar Cuenta</string>
+    <string name="urlGit">https://github.com/DanielCifuentes05/</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

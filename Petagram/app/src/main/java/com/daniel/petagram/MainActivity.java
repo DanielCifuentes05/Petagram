@@ -116,6 +116,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
                 break;
 
+            case R.id.mConfigurar:
+                Intent intent2=new Intent(MainActivity.this , ConfigurarCuenta.class);
+                startActivity(intent2);
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }

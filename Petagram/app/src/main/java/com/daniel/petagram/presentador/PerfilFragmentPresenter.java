@@ -1,18 +1,14 @@
-package com.daniel.petagram;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.daniel.petagram.presentador;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.daniel.petagram.adapter.MascotaAdapter;
-import com.daniel.petagram.db.BaseDatos;
+import com.daniel.petagram.R;
 import com.daniel.petagram.db.ConstructorMascotas;
+import com.daniel.petagram.fragment.IHomeFragment;
+import com.daniel.petagram.fragment.IPerfilFragment;
 import com.daniel.petagram.pojo.Mascota;
 import com.daniel.petagram.pojo.Media;
 import com.daniel.petagram.restAPI.ConstantesRestApi;
@@ -21,58 +17,35 @@ import com.daniel.petagram.restAPI.adapter.RestApiAdapter;
 import com.daniel.petagram.restAPI.model.MascotaResponse;
 import com.daniel.petagram.restAPI.model.MediaResponse;
 import com.google.gson.Gson;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Mejores5 extends AppCompatActivity {
+public class PerfilFragmentPresenter implements IPerfilFragmentPresenter {
 
-    ArrayList<Mascota> mascotas5 = new ArrayList<>();
-    ArrayList<Mascota> mascotas= new ArrayList<>();
-    private RecyclerView listaMascotas;
+    private IPerfilFragment iPerfilFragment;
+    private Context context;
+    private ConstructorMascotas constructorMascotas;
+    private ArrayList<Mascota> mascotas = new ArrayList<>();
     private ArrayList<Media> media= new ArrayList<>();
     private ArrayList<Mascota> mascotaTemp= new ArrayList<>();
-    Context context;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mejores5);
 
-        Toolbar mytoolbar=(Toolbar) findViewById(R.id.miToolbar2);
-        setSupportActionBar(mytoolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        listaMascotas=(RecyclerView) findViewById(R.id.rvMascotas2);
-
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        listaMascotas.setLayoutManager(llm);
+    public PerfilFragmentPresenter(IPerfilFragment iPerfilFragment, Context context) {
+        this.iPerfilFragment = iPerfilFragment;
+        this.context= context;
+        //obtenerMascotasPerfilBD();
         obtenerMediaIds();
-
-    }
-
-    public void inicializarAdapter(){
-        MascotaAdapter adapter = new MascotaAdapter(mascotas5,this);
-        listaMascotas.setAdapter(adapter);
-
-    }
-
-    public void obtenerMejores5(){
-        Collections.sort(mascotas);
-
-        for(int i = mascotas.size()-1; i >= mascotas.size()-5; i--){
-            mascotas5.add(mascotas.get(i));
-        }
-        inicializarAdapter();
-
     }
 
 
-    public void obtenerMediosMascotaRecientes() {
+
+    @Override
+    public void obtenerMediosPerfilRecientes() {
+
         for (int i = 0; i < media.size() ; i++) {
 
             RestApiAdapter restApiAdapter = new RestApiAdapter();
@@ -85,11 +58,7 @@ public class Mejores5 extends AppCompatActivity {
                     MascotaResponse mascotaResponse= response.body();
                     mascotaTemp = mascotaResponse.getMascotas();
                     mascotas.add(mascotaTemp.get(0));
-                    //mostrarMascotasRV();
-                    if(mascotas.size()==5){
-                        obtenerMejores5();
-
-                    }
+                    mostrarMascotasPerfilRV();
                 }
 
                 @Override
@@ -101,11 +70,11 @@ public class Mejores5 extends AppCompatActivity {
                 }
             });
         }
-
     }
 
-
+    @Override
     public void obtenerMediaIds() {
+
         RestApiAdapter restApiAdapter = new RestApiAdapter();
         Gson gsonMedia = restApiAdapter.construyeGsonMedia();
         EndpointsApi endpointsApi = restApiAdapter.establecerConexionApiInstagram(gsonMedia);
@@ -117,7 +86,7 @@ public class Mejores5 extends AppCompatActivity {
 
                 MediaResponse mediaResponse= response.body();
                 media = mediaResponse.getMedia();
-                obtenerMediosMascotaRecientes();
+                obtenerMediosPerfilRecientes();
 
             }
 
@@ -129,7 +98,12 @@ public class Mejores5 extends AppCompatActivity {
 
             }
         });
-
     }
 
+    @Override
+    public void mostrarMascotasPerfilRV() {
+        iPerfilFragment.inicializarAdapterPerfil(iPerfilFragment.crearAdapterP(mascotas));
+        iPerfilFragment.generarGridLayout();
+
+    }
 }

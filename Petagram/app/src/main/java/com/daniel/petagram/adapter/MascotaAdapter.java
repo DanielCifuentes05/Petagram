@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daniel.petagram.db.ConstructorMascotas;
 import com.daniel.petagram.pojo.Mascota;
 import com.daniel.petagram.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -41,16 +42,15 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
     @Override
     public void onBindViewHolder(@NonNull final MascotaViewHolder holder, final int position) {
         final Mascota mascota = mascotas.get(position);
-        holder.srcFoto.setImageResource(mascota.getFoto());
+        //holder.srcFoto.setImageResource(mascota.getFoto());
+        Picasso.with(activity)
+                .load(mascota.getFoto())
+                .placeholder(R.drawable.mascota_mosquito_1)
+                .into(holder.srcFoto);
         holder.tvNombre.setText(mascota.getNombre());
         holder.tvLike.setText(String.valueOf(mascota.getNum_likes()));
 
-        /*if(mascota.getSexo().equals("Hembra")){
-            holder.inferiorCard.setBackgroundColor(Color.parseColor("#ffe5ea"));
-        }else
-        {
-            holder.inferiorCard.setBackgroundColor(Color.parseColor("#47cdda"));
-        }*/
+
 
         holder.btnHueso.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,11 +58,8 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
 
                 Toast.makeText(activity,"Has dado like a "+ mascota.getNombre() , Toast.LENGTH_SHORT).show();
 
-                ConstructorMascotas constructorMascotas = new ConstructorMascotas(activity);
-                constructorMascotas.darLikeMascota(mascota);
-                holder.tvLike.setText(String.valueOf(constructorMascotas.obtenerLikesMascota(mascota)));
 
-
+                //holder.tvLike.setText(String.valueOf());
             }
         });
 

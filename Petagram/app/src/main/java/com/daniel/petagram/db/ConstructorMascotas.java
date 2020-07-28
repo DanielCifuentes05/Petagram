@@ -32,8 +32,6 @@ public class ConstructorMascotas {
         for(int i = 0; i < mascotas.size(); i++){
             ContentValues contentValues = new ContentValues();
             contentValues.put(ConstantesBaseDatos.TABLE_MASCOTAS_NOMBRE, mascotas.get(i).getNombre());
-            contentValues.put(ConstantesBaseDatos.TABLE_MASCOTAS_RAZA, mascotas.get(i).getRaza());
-            contentValues.put(ConstantesBaseDatos.TABLE_MASCOTAS_SEXO, mascotas.get(i).getSexo());
             contentValues.put(ConstantesBaseDatos.TABLE_MASCOTAS_FOTO, mascotas.get(i).getFoto());
             db.insertarMascota(contentValues);
 
@@ -46,12 +44,12 @@ public class ConstructorMascotas {
 
         ArrayList<Mascota> mascotas = new ArrayList<>();
 
-        mascotas.add(new Mascota("Lupe","Gato","Hembra",3, R.drawable.gato3));
-        mascotas.add(new Mascota("Max","Perro", "Macho",5, R.drawable.mascota_mosquito_1));
-        mascotas.add(new Mascota("Rufo","Perro", "Macho",7, R.drawable.perrito1));
-        mascotas.add(new Mascota("Hana","Perro", "Hembra",6, R.drawable.perro));
-        mascotas.add(new Mascota("Fiona","Perro", "Hembra",9, R.drawable.perro6));
-        mascotas.add(new Mascota("Aron","Gato", "Macho",6, R.drawable.gato));
+        /*mascotas.add(new Mascota("Lupe",3));
+        mascotas.add(new Mascota("Max",5));
+        mascotas.add(new Mascota("Rufo",7));
+        mascotas.add(new Mascota("Hana",6));
+        mascotas.add(new Mascota("Fiona",9));*/
+
         return mascotas;
     }
 

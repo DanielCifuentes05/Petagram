@@ -2,38 +2,31 @@ package com.daniel.petagram.pojo;
 
 public class Mascota implements Comparable<Mascota>{
 
-    private int id;
+    private String id;
     private String nombre;
-    private String raza;
-    private String sexo;
+    //private String raza;
+    //private String sexo;
     private int num_likes=0;
-    private int foto;
+    private String urlFoto;
 
     public Mascota() {
     }
 
-    public Mascota(String nombre, String raza, String sexo, int num_likes, int foto) {
+    public Mascota(String nombre, int num_likes, String urlFoto) {
         this.nombre = nombre;
-        this.raza = raza;
-        this.sexo = sexo;
         this.num_likes = num_likes;
-        this.foto = foto;
+        this.urlFoto = urlFoto;
     }
 
-    public String getSexo() {
-        return sexo;
+
+
+
+    public String getFoto() {
+        return urlFoto;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public int getFoto() {
-        return foto;
-    }
-
-    public void setFoto(int foto) {
-        this.foto = foto;
+    public void setFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
     }
 
     public String getNombre() {
@@ -44,14 +37,6 @@ public class Mascota implements Comparable<Mascota>{
         this.nombre = nombre;
     }
 
-    public String getRaza() {
-        return raza;
-    }
-
-    public void setRaza(String raza) {
-        this.raza = raza;
-    }
-
     public int getNum_likes() {
         return num_likes;
     }
@@ -60,11 +45,11 @@ public class Mascota implements Comparable<Mascota>{
         this.num_likes = num_likes;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
