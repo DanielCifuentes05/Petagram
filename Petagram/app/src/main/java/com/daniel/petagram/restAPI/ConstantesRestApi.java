@@ -16,7 +16,7 @@ public final class ConstantesRestApi {
 
     public static final String ROOT_URL_SERVER = "https://stark-escarpment-07529.herokuapp.com/";
     public static final String KEY_POST_ID_TOKEN = "token-device/";
-
+    public static final String KEY_POST_ID_LIKE = "get-likes/";
 
 
 }

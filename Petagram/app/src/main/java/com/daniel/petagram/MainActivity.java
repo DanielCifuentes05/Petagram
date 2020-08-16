@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        onNewIntent(getIntent());
+
         mytoolbar=(Toolbar) findViewById(R.id.miToolbar);
         mytab = (TabLayout) findViewById(R.id.myTab);
         myviewpager = (ViewPager) findViewById(R.id.myViewPager);
@@ -96,8 +98,16 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Fragment> agregarFragments(){
         ArrayList<Fragment> fragments =new ArrayList<>();
 
-        fragments.add(new RecyclerViewFragment());
-        fragments.add(new PerfilFragment());
+        if(count == 0){
+            fragments.add(new RecyclerViewFragment());
+            fragments.add(new PerfilFragment());
+            Log.d(TAG, "NOTIPASO NOOOOOOOO");
+        }else
+        {
+            fragments.add(new PerfilFragment());
+            fragments.add(new RecyclerViewFragment());
+            Log.d(TAG, "NOTIPASO");
+        }
 
         return fragments;
     }
@@ -173,6 +183,13 @@ public class MainActivity extends AppCompatActivity {
         id_instagram = savedInstanceState.getString(getString(R.string.clvCuenta));
         Log.d(TAG, "CUENTA INSTAGRAM RESTORE "+ id_instagram );
 
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        count = intent.getIntExtra("perfil",0);
     }
 
     public void recibirNotificaciones(){
