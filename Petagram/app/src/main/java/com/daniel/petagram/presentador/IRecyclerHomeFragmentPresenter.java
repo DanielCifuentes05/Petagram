@@ -4,6 +4,6 @@ public interface IRecyclerHomeFragmentPresenter {
     public void obtenerMascotasBD();
     public void mostrarMascotasRV();
     public void obtenerMediosMascotaRecientes();
-    public void obtenerMediaIds();
+
 
 }
